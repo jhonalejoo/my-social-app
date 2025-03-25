@@ -4,6 +4,7 @@ import Profile from './pages/Profile'
 import Posts from './pages/Posts'
 import { useAuthStore } from './store/authStore'
 import { useEffect } from 'react'
+import Navbar from './components/Navbar'
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const user = useAuthStore((state) => state.user)
@@ -27,16 +28,19 @@ function AppRoutes() {
 
   useEffect(() => {
     if (user) {
-      navigate('/profile') // ✅ Redirige al perfil si hay usuario
+      navigate('/posts')  // ✅ Ahora redirige a Posts al iniciar sesión
     }
   }, [user, navigate])
 
   return (
+    <>
+    <Navbar />
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/posts" element={<ProtectedRoute><Posts /></ProtectedRoute>} />
     </Routes>
+  </>
   )
 }
 
