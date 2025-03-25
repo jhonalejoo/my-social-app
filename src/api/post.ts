@@ -18,7 +18,7 @@ export const getOtherPosts = async (token: string): Promise<Post[]> => {
 }
 
 export const likePost = async (token: string,postId: number): Promise<void> => {
-  await axios.post(`${POST_API_URL}/posts/${postId}/like`,
+  await axios.post(`${POST_API_URL}/posts/${postId}/like`,{},
     {
       headers: { Authorization: `Bearer ${token}`,    'Content-Type': 'application/json' },
     })
